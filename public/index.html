@@ -115,7 +115,7 @@
             <span class="eyebrow">Library</span>
             <h2 id="library-title">Script collection</h2>
           </div>
-          <p id="library-desc">Ringkas, jelas, dan siap dibuka saat dibutuhkan.</p>
+          <p id="library-desc"></p>
         </div>
 
         <div class="library-toolbar">
@@ -308,6 +308,12 @@ if(quests.length === 0) {
 if (access.granted) {
   ClarityX.openLibrary();
 }
+            </template>
+            <template data-tutorial-content>
+1. Script berhasil disalin.
+2. Baca catatan penggunaan sebelum menjalankan script.
+3. Pastikan kamu memahami risiko dan aturan platform terkait.
+4. Ganti isi tutorial ini sesuai kebutuhan kamu.
             </template>
             <div class="card-meta">
               <span class="script-tag">Discord Quest</span>
@@ -542,6 +548,12 @@ AutoFarmLogic.Player.CharacterRemoving:Connect(function()
 end)
 return AutoFarmLogic
             </template>
+            <template data-tutorial-content>
+1. Script berhasil disalin.
+2. Tempel script pada environment yang sesuai.
+3. Periksa konfigurasi sebelum menjalankan.
+4. Ganti isi tutorial ini sesuai kebutuhan kamu.
+            </template>
             <div class="card-meta">
               <span class="script-tag teal">PRESET</span>
               <div class="meta-group">
@@ -569,6 +581,12 @@ async function copyScript(value) {
     message: "Script copied to clipboard"
   };
 }
+            </template>
+            <template data-tutorial-content>
+1. Script berhasil disalin.
+2. Tempel fungsi ke file JavaScript project kamu.
+3. Sesuaikan nama fungsi dan feedback UI jika diperlukan.
+4. Ganti isi tutorial ini sesuai kebutuhan kamu.
             </template>
             <div class="card-meta">
               <span class="script-tag gold">Utility</span>
@@ -637,8 +655,40 @@ async function copyScript(value) {
         </div>
 
         <div class="modal-footer">
-          <span>Script copied directly to your clipboard.</span>
+          <span>After copying, the usage note opens automatically.</span>
           <button class="ghost-button" type="button" data-close-modal>Close</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="tutorial-modal" id="tutorial-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-tutorial></div>
+      <section
+        class="modal-panel tutorial-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tutorial-title"
+      >
+        <div class="modal-header">
+          <div>
+            <div class="modal-meta-line">
+              <span class="modal-kicker">Usage note</span>
+              <span class="status-badge work">Copied</span>
+            </div>
+            <h2 id="tutorial-title">Tutorial</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-tutorial aria-label="Close tutorial">
+            &times;
+          </button>
+        </div>
+
+        <div class="tutorial-body">
+          <pre class="tutorial-text" id="tutorial-content"></pre>
+        </div>
+
+        <div class="modal-footer">
+          <span>Edit this note from each card's tutorial template.</span>
+          <button class="ghost-button" type="button" data-close-tutorial>Done</button>
         </div>
       </section>
     </div>

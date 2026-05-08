@@ -936,7 +936,8 @@ a {
     0 0 24px rgba(157, 92, 246, 0.18);
 }
 
-.script-modal {
+.script-modal,
+.tutorial-modal {
   position: fixed;
   inset: 0;
   z-index: 30;
@@ -947,7 +948,12 @@ a {
   visibility: hidden;
 }
 
-.script-modal.is-open {
+.tutorial-modal {
+  z-index: 40;
+}
+
+.script-modal.is-open,
+.tutorial-modal.is-open {
   pointer-events: auto;
   visibility: visible;
 }
@@ -963,7 +969,8 @@ a {
   transition: opacity 0.34s ease;
 }
 
-.script-modal.is-open .modal-backdrop {
+.script-modal.is-open .modal-backdrop,
+.tutorial-modal.is-open .modal-backdrop {
   opacity: 1;
 }
 
@@ -989,9 +996,14 @@ a {
     transform 0.52s cubic-bezier(0.18, 0.9, 0.22, 1.12);
 }
 
-.script-modal.is-open .modal-panel {
+.script-modal.is-open .modal-panel,
+.tutorial-modal.is-open .modal-panel {
   opacity: 1;
   transform: perspective(900px) translateY(0) rotateX(0) scale(1);
+}
+
+.tutorial-panel {
+  width: min(40rem, 100%);
 }
 
 .modal-header {
@@ -1229,6 +1241,26 @@ a {
 .ghost-button:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.11);
+}
+
+.tutorial-body {
+  margin: clamp(1rem, 4vw, 1.55rem);
+  padding: clamp(1rem, 4vw, 1.35rem);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 1.1rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(223, 93, 168, 0.09), transparent 16rem),
+    rgba(8, 11, 18, 0.72);
+}
+
+.tutorial-text {
+  margin: 0;
+  color: #e8eaf2;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(0.92rem, 2vw, 1rem);
+  font-weight: 650;
+  line-height: 1.85;
+  white-space: pre-wrap;
 }
 
 @keyframes typeIn {
@@ -1492,7 +1524,8 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .script-modal {
+  .script-modal,
+  .tutorial-modal {
     align-items: end;
     padding: 0.65rem;
   }
