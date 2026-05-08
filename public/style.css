@@ -335,6 +335,7 @@ a {
   width: 2.7rem;
   height: 2.7rem;
   border-radius: 1rem;
+  overflow: hidden;
   background:
     linear-gradient(#131728, #131728) padding-box,
     linear-gradient(135deg, var(--purple), var(--pink), var(--cyan)) border-box;
@@ -342,6 +343,13 @@ a {
   color: #fff;
   box-shadow: 0 0 28px rgba(168, 85, 247, 0.25);
   font-size: 0.82rem;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .nav-actions {
