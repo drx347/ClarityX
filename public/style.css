@@ -903,6 +903,13 @@ a {
   line-height: 1.62;
 }
 
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
 .gradient-button {
   display: inline-flex;
   align-items: center;
@@ -926,6 +933,35 @@ a {
     filter 0.32s ease,
     transform 0.32s ease,
     box-shadow 0.32s ease;
+}
+
+.card-actions .gradient-button {
+  margin-top: 0;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #f0eef8;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  font-weight: 800;
+  transition:
+    transform 0.32s ease,
+    background 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.secondary-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(157, 92, 246, 0.26);
+  background: rgba(255, 255, 255, 0.085);
 }
 
 .gradient-button:hover {
