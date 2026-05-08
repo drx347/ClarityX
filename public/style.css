@@ -318,6 +318,18 @@ a {
     0 18px 60px rgba(0, 0, 0, 0.3),
     0 0 30px rgba(180, 76, 255, 0.08);
   backdrop-filter: blur(24px);
+  animation: surfaceRise 0.75s cubic-bezier(0.18, 0.9, 0.22, 1) both;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.navbar:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.34),
+    0 0 36px rgba(157, 92, 246, 0.12);
 }
 
 .brand {
@@ -327,6 +339,11 @@ a {
   padding-left: 0.35rem;
   font-size: 1rem;
   font-weight: 800;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+.brand:hover {
+  transform: translateY(-1px);
 }
 
 .brand-mark {
@@ -343,6 +360,12 @@ a {
   color: #fff;
   box-shadow: 0 0 28px rgba(168, 85, 247, 0.25);
   font-size: 0.82rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-4deg) scale(1.04);
+  box-shadow: 0 0 36px rgba(157, 92, 246, 0.24);
 }
 
 .brand-mark img {
@@ -385,6 +408,10 @@ a {
   background: rgba(255, 255, 255, 0.09);
 }
 
+.nav-link:active {
+  transform: scale(0.97);
+}
+
 .nav-status {
   display: inline-flex;
   align-items: center;
@@ -412,6 +439,10 @@ a {
   gap: clamp(1.5rem, 5vw, 3.25rem);
   min-height: auto;
   padding: clamp(3.25rem, 7vw, 5.5rem) 0 2.75rem;
+}
+
+.hero-copy {
+  animation: contentRise 0.82s cubic-bezier(0.18, 0.9, 0.22, 1) 6.85s both;
 }
 
 .eyebrow {
@@ -469,6 +500,31 @@ a {
     rgba(255, 255, 255, 0.026);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(18px);
+  animation: contentRise 0.7s cubic-bezier(0.18, 0.9, 0.22, 1) both;
+  transition:
+    transform 0.32s ease,
+    border-color 0.32s ease,
+    background 0.32s ease;
+}
+
+.hero-stats div:nth-child(1) {
+  animation-delay: 7s;
+}
+
+.hero-stats div:nth-child(2) {
+  animation-delay: 7.08s;
+}
+
+.hero-stats div:nth-child(3) {
+  animation-delay: 7.16s;
+}
+
+.hero-stats div:hover {
+  transform: translateY(-3px);
+  border-color: rgba(157, 92, 246, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.072), rgba(255, 255, 255, 0.034)),
+    rgba(255, 255, 255, 0.035);
 }
 
 .hero-stats strong {
@@ -497,6 +553,19 @@ a {
     var(--shadow),
     0 0 44px rgba(157, 92, 246, 0.11);
   backdrop-filter: blur(24px);
+  animation: panelFloatIn 0.9s cubic-bezier(0.18, 0.9, 0.22, 1) 7.05s both;
+  transition:
+    transform 0.45s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.editor-panel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 34px 100px rgba(0, 0, 0, 0.5),
+    0 0 52px rgba(157, 92, 246, 0.16);
 }
 
 .editor-top {
@@ -606,6 +675,10 @@ a {
   line-height: 1.75;
 }
 
+.connect-copy {
+  animation: contentRise 0.78s cubic-bezier(0.18, 0.9, 0.22, 1) 0.16s both;
+}
+
 .connect-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -625,6 +698,32 @@ a {
     0 18px 48px rgba(0, 0, 0, 0.28),
     0 1px 0 rgba(255, 255, 255, 0.05) inset;
   backdrop-filter: blur(24px);
+  animation: contentRise 0.72s cubic-bezier(0.18, 0.9, 0.22, 1) both;
+  transition:
+    transform 0.36s ease,
+    border-color 0.32s ease,
+    box-shadow 0.32s ease,
+    background 0.32s ease;
+}
+
+.connect-card:nth-child(1) {
+  animation-delay: 0.28s;
+}
+
+.connect-card:nth-child(2) {
+  animation-delay: 0.38s;
+}
+
+.connect-card:nth-child(3) {
+  animation-delay: 0.48s;
+}
+
+.connect-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(157, 92, 246, 0.24);
+  box-shadow:
+    0 26px 68px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(157, 92, 246, 0.12);
 }
 
 .primary-connect::before {
@@ -649,6 +748,12 @@ a {
   box-shadow: 0 16px 36px rgba(157, 92, 246, 0.2);
   font-size: 0.85rem;
   font-weight: 900;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.connect-card:hover .connect-mark {
+  transform: scale(1.04) rotate(-2deg);
+  box-shadow: 0 18px 42px rgba(157, 92, 246, 0.26);
 }
 
 .connect-mark img {
@@ -699,6 +804,11 @@ a {
   width: 100%;
   border-radius: 999px;
   font-weight: 900;
+  transition:
+    transform 0.28s ease,
+    filter 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .discord-button {
@@ -715,12 +825,19 @@ a {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.discord-button:hover,
+.ghost-connect-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
 .section-heading {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 2rem;
   margin-bottom: 1rem;
+  animation: contentRise 0.72s cubic-bezier(0.18, 0.9, 0.22, 1) 7.12s both;
 }
 
 .section-heading h2 {
@@ -742,6 +859,16 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.035)),
     rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(22px);
+  animation: contentRise 0.75s cubic-bezier(0.18, 0.9, 0.22, 1) 7.22s both;
+  transition:
+    transform 0.34s ease,
+    border-color 0.32s ease,
+    background 0.32s ease;
+}
+
+.library-toolbar:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .search-shell {
@@ -828,6 +955,10 @@ a {
   transform: translateY(-1px);
 }
 
+.filter-pill:active {
+  transform: scale(0.97);
+}
+
 .section-heading p {
   max-width: 21rem;
   margin: 0;
@@ -885,6 +1016,19 @@ a {
     box-shadow 0.35s ease,
     background 0.35s ease,
     opacity 0.22s ease;
+  animation: cardEnter 0.42s cubic-bezier(0.18, 0.9, 0.22, 1) both;
+}
+
+.script-card:nth-child(1) {
+  animation-delay: 7.28s;
+}
+
+.script-card:nth-child(2) {
+  animation-delay: 7.36s;
+}
+
+.script-card:nth-child(3) {
+  animation-delay: 7.44s;
 }
 
 .script-card[hidden] {
@@ -924,6 +1068,10 @@ a {
 
 .script-card:hover::before {
   opacity: 1;
+}
+
+.script-card:active {
+  transform: translateY(-0.18rem) scale(0.995);
 }
 
 .card-meta {
@@ -1538,6 +1686,42 @@ a {
     opacity: 0;
     visibility: hidden;
     transform: translateY(0.8rem) scale(0.97);
+  }
+}
+
+@keyframes surfaceRise {
+  from {
+    opacity: 0;
+    transform: translateY(-0.7rem) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contentRise {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panelFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.2rem) rotateX(8deg) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0) scale(1);
   }
 }
 
