@@ -19,6 +19,7 @@ let activeScript = "";
 let activeTutorial = "";
 let tutorialTimer = null;
 let activeFilter = "all";
+const filterMotionMs = 190;
 
 function getCardData(card) {
   const scriptTemplate = card.querySelector("[data-script-content]");
@@ -107,16 +108,33 @@ function filterScripts() {
   const query = scriptSearch.value.trim().toLowerCase();
   let visibleCount = 0;
 
-  scriptCards.forEach((card) => {
+  scriptCards.forEach((card, index) => {
     const status = (card.dataset.scriptStatus || "").toLowerCase();
     const matchesFilter = activeFilter === "all" || status === activeFilter;
     const matchesSearch = !query || getSearchText(card).includes(query);
     const isVisible = matchesFilter && matchesSearch;
 
-    card.classList.toggle("is-hidden", !isVisible);
-
     if (isVisible) {
       visibleCount += 1;
+      card.hidden = false;
+      card.style.setProperty("--motion-order", index);
+      card.classList.remove("is-leaving", "is-hidden");
+      card.classList.add("is-entering");
+
+      window.setTimeout(() => {
+        card.classList.remove("is-entering");
+      }, filterMotionMs);
+    } else if (!card.hidden) {
+      card.classList.remove("is-entering");
+      card.classList.add("is-leaving");
+
+      window.setTimeout(() => {
+        card.hidden = true;
+        card.classList.remove("is-leaving");
+        card.classList.add("is-hidden");
+      }, filterMotionMs);
+    } else {
+      card.classList.add("is-hidden");
     }
   });
 
