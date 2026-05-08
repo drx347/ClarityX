@@ -1,38 +1,38 @@
 const modal = document.querySelector("#script-modal");
-const tutorialModal = document.querySelector("#tutorial-modal");
 const modalTitle = document.querySelector("#modal-title");
 const modalType = document.querySelector("#modal-type");
 const modalStatus = document.querySelector("#modal-status");
 const modalCode = document.querySelector("#modal-code");
-const tutorialTitle = document.querySelector("#tutorial-title");
-const tutorialContent = document.querySelector("#tutorial-content");
 const copyButton = document.querySelector("[data-copy-script]");
-const openButtons = document.querySelectorAll("[data-open-script]");
+const cardActions = document.querySelectorAll("[data-card-action]");
 const closeButtons = document.querySelectorAll("[data-close-modal]");
-const closeTutorialButtons = document.querySelectorAll("[data-close-tutorial]");
 
 let activeScript = "";
-let activeTutorial = "";
-let tutorialTimer = null;
 
-function openScriptModal(card) {
+function getCardData(card) {
   const scriptTemplate = card.querySelector("[data-script-content]");
-  const tutorialTemplate = card.querySelector("[data-tutorial-content]");
   const scriptStatus = card.dataset.scriptStatus || "Work";
 
-  activeScript = scriptTemplate ? scriptTemplate.content.textContent.trim() : "";
-  activeTutorial = tutorialTemplate ? tutorialTemplate.content.textContent.trim() : "";
-  modalTitle.textContent = card.dataset.scriptTitle || "Untitled Script";
-  modalType.textContent = card.dataset.scriptType || "Script";
-  modalStatus.textContent = scriptStatus;
-  modalStatus.className = `status-badge ${scriptStatus.toLowerCase()}`;
+  return {
+    script: scriptTemplate ? scriptTemplate.content.textContent.trim() : "",
+    status: scriptStatus,
+    title: card.dataset.scriptTitle || "Untitled Script",
+    type: card.dataset.scriptType || "Script",
+  };
+}
+
+function openScriptModal(card) {
+  const cardData = getCardData(card);
+
+  activeScript = cardData.script;
+  modalTitle.textContent = cardData.title;
+  modalType.textContent = cardData.type;
+  modalStatus.textContent = cardData.status;
+  modalStatus.className = `status-badge ${cardData.status.toLowerCase()}`;
   modalCode.textContent = activeScript;
-  tutorialTitle.textContent = `Tutorial: ${card.dataset.scriptTitle || "Script"}`;
-  tutorialContent.textContent = activeTutorial || "Tulis tutorial penggunaan script ini di template data-tutorial-content.";
   copyButton.classList.remove("is-copied");
   copyButton.querySelector(".copy-label").textContent = "Copy Script";
   modal.classList.remove("is-copied");
-  clearTimeout(tutorialTimer);
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
@@ -40,39 +40,12 @@ function openScriptModal(card) {
 }
 
 function closeScriptModal() {
-  clearTimeout(tutorialTimer);
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
-  if (!tutorialModal.classList.contains("is-open")) {
-    document.body.style.overflow = "";
-  }
-}
-
-function openTutorialModal() {
-  tutorialModal.classList.add("is-open");
-  tutorialModal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-}
-
-function continueToTutorial() {
-  modal.classList.add("is-copied");
-  copyButton.classList.add("is-copied");
-  copyButton.querySelector(".copy-label").textContent = "Copied";
-
-  clearTimeout(tutorialTimer);
-  tutorialTimer = setTimeout(() => {
-    closeScriptModal();
-    openTutorialModal();
-  }, 450);
-}
-
-function closeTutorialModal() {
-  tutorialModal.classList.remove("is-open");
-  tutorialModal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
 }
 
-openButtons.forEach((button) => {
+cardActions.forEach((button) => {
   button.addEventListener("click", () => {
     openScriptModal(button.closest(".script-card"));
   });
@@ -80,10 +53,6 @@ openButtons.forEach((button) => {
 
 closeButtons.forEach((button) => {
   button.addEventListener("click", closeScriptModal);
-});
-
-closeTutorialButtons.forEach((button) => {
-  button.addEventListener("click", closeTutorialModal);
 });
 
 copyButton.addEventListener("click", async () => {
@@ -102,18 +71,15 @@ copyButton.addEventListener("click", async () => {
       fallback.remove();
     }
 
-    continueToTutorial();
+    modal.classList.add("is-copied");
+    copyButton.classList.add("is-copied");
+    copyButton.querySelector(".copy-label").textContent = "Copied";
   } catch {
     copyButton.querySelector(".copy-label").textContent = "Copy failed";
   }
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && tutorialModal.classList.contains("is-open")) {
-    closeTutorialModal();
-    return;
-  }
-
   if (event.key === "Escape" && modal.classList.contains("is-open")) {
     closeScriptModal();
   }

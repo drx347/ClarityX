@@ -27,13 +27,22 @@
 
         <div class="terminal-body">
           <p class="terminal-line line-one">
-            <span class="prompt">cx:</span> Initializing ClarityX<span class="dots"></span>
+            <span class="prompt">CX:</span> Initializing ClarityX<span class="dots"></span>
           </p>
           <p class="terminal-line line-two">
-            <span class="prompt">sys:</span> Verifying access<span class="dots delay"></span>
+            <span class="prompt">SYS:</span> Verifying access<span class="dots delay"></span>
           </p>
+          <div class="terminal-loader" aria-label="Loading progress">
+            <div class="loader-meta">
+              <span>Loading modules</span>
+              <span class="loader-percent"></span>
+            </div>
+            <div class="loader-track">
+              <span class="loader-fill"></span>
+            </div>
+          </div>
           <p class="terminal-line line-three granted">
-            <span class="prompt">ok:</span> Access Granted<span class="cursor"></span>
+            <span class="prompt">CX:</span> Access Granted<span class="cursor"></span>
           </p>
         </div>
       </div>
@@ -47,8 +56,8 @@
         </a>
 
         <div class="nav-actions" aria-label="Main navigation">
-          <a href="#script-grid" class="nav-link active">Scripts</a>
-          <a href="#tutorial" class="nav-link">Tutorial</a>
+          <a href="index.html" class="nav-link active">Scripts</a>
+          <a href="connect.html" class="nav-link">Connect</a>
         </div>
 
         <div class="nav-status">
@@ -60,19 +69,18 @@
       <section class="hero">
         <div class="hero-copy">
           <span class="eyebrow">ClarityX script hub</span>
-          <h1>Clean scripts, instant access.</h1>
+          <h1>clarityX Simple copier script.</h1>
           <p>
-            Buka koleksi script, cek status Work atau Maintenance, lalu salin
-            script dari modal editor yang rapi.
+            @exotickic side project, dm me for request script:p
           </p>
 
           <div class="hero-stats" aria-label="Library stats">
             <div>
-              <strong>04</strong>
+              <strong>03</strong>
               <span>Scripts</span>
             </div>
             <div>
-              <strong>03</strong>
+              <strong>02</strong>
               <span>Work</span>
             </div>
             <div>
@@ -105,9 +113,9 @@
         <div class="section-heading">
           <div>
             <span class="eyebrow">Library</span>
-            <h2>Script collection</h2>
+            <h2 id="library-title">Script collection</h2>
           </div>
-          <p>Ringkas, jelas, dan siap dibuka saat dibutuhkan.</p>
+          <p id="library-desc">Ringkas, jelas, dan siap dibuka saat dibutuhkan.</p>
         </div>
 
         <div class="library-toolbar">
@@ -301,13 +309,6 @@ if (access.granted) {
   ClarityX.openLibrary();
 }
             </template>
-            <template data-tutorial-content>
-1. Buka Discord Desktop App, bukan browser.
-2. Masuk ke halaman quest yang ingin diselesaikan.
-3. Tekan Ctrl + Shift + I untuk membuka DevTools.
-4. Paste script yang sudah dicopy ke tab Console.
-5. Tunggu progress quest sampai selesai.
-            </template>
             <div class="card-meta">
               <span class="script-tag">Discord Quest</span>
               <div class="meta-group">
@@ -317,7 +318,7 @@ if (access.granted) {
             </div>
             <h3>Spoofing Discord Quest</h3>
             <p>Auto Discord quest no need to download the application required by discord safe and clean BYPASS</p>
-            <button class="gradient-button" type="button" data-open-script>Open Script</button>
+            <button class="gradient-button" type="button" data-card-action>Open Script</button>
           </article>
 
           <article
@@ -541,13 +542,6 @@ AutoFarmLogic.Player.CharacterRemoving:Connect(function()
 end)
 return AutoFarmLogic
             </template>
-            <template data-tutorial-content>
-1. Buka executor atau environment Roblox yang kamu gunakan.
-2. Pastikan karakter sudah berada di vehicle.
-3. Paste script module ini sesuai loader yang kamu pakai.
-4. Jalankan fungsi Start untuk mulai autofarm.
-5. Gunakan StopAutoDrive jika ingin menghentikan proses.
-            </template>
             <div class="card-meta">
               <span class="script-tag teal">PRESET</span>
               <div class="meta-group">
@@ -557,7 +551,7 @@ return AutoFarmLogic
             </div>
             <h3>CDID Autofarm Logic</h3>
             <p>CDID Autofarm preset for bypass system in Roblox Studio</p>
-            <button class="gradient-button" type="button" data-open-script>Open Script</button>
+            <button class="gradient-button" type="button" data-card-action>Open Script</button>
           </article>
 
           <article
@@ -576,52 +570,16 @@ async function copyScript(value) {
   };
 }
             </template>
-            <template data-tutorial-content>
-1. Copy script dari modal.
-2. Tempel fungsi ke file JavaScript project kamu.
-3. Panggil fungsi copyScript dengan value yang ingin disalin.
-4. Tambahkan feedback UI seperti toast jika diperlukan.
-            </template>
             <div class="card-meta">
               <span class="script-tag gold">Utility</span>
               <div class="meta-group">
                 <span class="status-badge maintenance">Maintenance</span>
-                <span>Lite</span>
+                <span>Flow</span>
               </div>
             </div>
             <h3>Copy Clipboard Flow</h3>
             <p>Pattern UI untuk tombol copy, toast feedback, dan fallback interaksi sederhana.</p>
-            <button class="gradient-button" type="button" data-open-script>Open Script</button>
-          </article>
-
-          <article
-            class="script-card"
-            data-script-title="Tutorial Launcher"
-            data-script-type="Tutorial"
-            data-script-status="Work"
-          >
-            <template data-script-content>
-1. Pilih script dari library.
-2. Klik tombol Open Script.
-3. Baca instruksi singkat di modal.
-4. Salin script dan tempel ke project kamu.
-            </template>
-            <template data-tutorial-content>
-1. Baca isi tutorial di modal.
-2. Ikuti langkah penggunaan sesuai script.
-3. Ganti tutorial ini dengan instruksi kamu sendiri.
-4. Simpan file lalu refresh browser.
-            </template>
-            <div class="card-meta">
-              <span class="script-tag green">Guide</span>
-              <div class="meta-group">
-                <span class="status-badge work">Work</span>
-                <span>Docs</span>
-              </div>
-            </div>
-            <h3>Tutorial Launcher</h3>
-            <p>Layout tutorial penggunaan script dengan step pendek, code block, dan callout bersih.</p>
-            <button class="gradient-button" type="button" data-open-script>Open Tutorial</button>
+            <button class="gradient-button" type="button" data-card-action>Open Script</button>
           </article>
         </div>
       </section>
@@ -661,7 +619,7 @@ async function copyScript(value) {
           <div class="flow-line"></div>
           <div class="flow-step">
             <span>3</span>
-            <strong>Tutorial</strong>
+            <strong>Ready</strong>
           </div>
         </div>
 
@@ -679,40 +637,8 @@ async function copyScript(value) {
         </div>
 
         <div class="modal-footer">
-          <span>After copying, the usage tutorial opens automatically.</span>
+          <span>Script copied directly to your clipboard.</span>
           <button class="ghost-button" type="button" data-close-modal>Close</button>
-        </div>
-      </section>
-    </div>
-
-    <div class="tutorial-modal" id="tutorial-modal" aria-hidden="true">
-      <div class="modal-backdrop" data-close-tutorial></div>
-      <section
-        class="modal-panel tutorial-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="tutorial-title"
-      >
-        <div class="modal-header">
-          <div>
-            <div class="modal-meta-line">
-              <span class="modal-kicker">Tutorial</span>
-              <span class="status-badge work">Guide</span>
-            </div>
-            <h2 id="tutorial-title">How to use this script</h2>
-          </div>
-          <button class="icon-button" type="button" data-close-tutorial aria-label="Close tutorial">
-            &times;
-          </button>
-        </div>
-
-        <div class="tutorial-body">
-          <pre class="tutorial-text" id="tutorial-content"></pre>
-        </div>
-
-        <div class="modal-footer">
-          <span>Edit this guide from each card's tutorial template.</span>
-          <button class="ghost-button" type="button" data-close-tutorial>Done</button>
         </div>
       </section>
     </div>
