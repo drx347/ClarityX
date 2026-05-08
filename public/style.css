@@ -102,7 +102,8 @@ a {
     0 22px 58px rgba(0, 0, 0, 0.34),
     0 0 30px rgba(157, 92, 246, 0.12);
   backdrop-filter: blur(24px);
-  animation: bubbleIn 0.7s cubic-bezier(0.18, 0.9, 0.22, 1.12) 6.85s both;
+  pointer-events: none;
+  animation: bubbleFloat 5.2s cubic-bezier(0.18, 0.9, 0.22, 1) 6.85s both;
 }
 
 .notice-pulse {
@@ -1450,15 +1451,22 @@ a {
   }
 }
 
-@keyframes bubbleIn {
-  from {
+@keyframes bubbleFloat {
+  0% {
     opacity: 0;
     transform: translateY(0.8rem) scale(0.96);
   }
 
-  to {
+  14%,
+  78% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.8rem) scale(0.97);
   }
 }
 
