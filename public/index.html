@@ -127,14 +127,14 @@
         </div>
 
         <div class="library-toolbar">
-          <div class="search-shell" aria-label="Search visual">
+          <label class="search-shell" aria-label="Search scripts">
             <span class="search-icon"></span>
-            <span>Search script...</span>
-          </div>
+            <input id="script-search" type="search" placeholder="Search script..." autocomplete="off" />
+          </label>
           <div class="filter-pills">
-            <span class="filter-pill active">All</span>
-            <span class="filter-pill">Work</span>
-            <span class="filter-pill">Maintenance</span>
+            <button class="filter-pill active" type="button" data-filter="all">All</button>
+            <button class="filter-pill" type="button" data-filter="work">Work</button>
+            <button class="filter-pill" type="button" data-filter="maintenance">Maintenance</button>
           </div>
         </div>
 
@@ -616,6 +616,11 @@ async function copyScript(value) {
             <p>Pattern UI untuk tombol copy, toast feedback, dan fallback interaksi sederhana.</p>
             <button class="gradient-button" type="button" data-card-action>Open Script</button>
           </article>
+        </div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <strong>No scripts found</strong>
+          <p>Try a different keyword or filter.</p>
         </div>
       </section>
     </main>

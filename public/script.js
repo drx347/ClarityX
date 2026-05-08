@@ -8,12 +8,17 @@ const tutorialTitle = document.querySelector("#tutorial-title");
 const tutorialContent = document.querySelector("#tutorial-content");
 const copyButton = document.querySelector("[data-copy-script]");
 const cardActions = document.querySelectorAll("[data-card-action]");
+const scriptCards = document.querySelectorAll(".script-card");
+const scriptSearch = document.querySelector("#script-search");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const emptyState = document.querySelector("#empty-state");
 const closeButtons = document.querySelectorAll("[data-close-modal]");
 const closeTutorialButtons = document.querySelectorAll("[data-close-tutorial]");
 
 let activeScript = "";
 let activeTutorial = "";
 let tutorialTimer = null;
+let activeFilter = "all";
 
 function getCardData(card) {
   const scriptTemplate = card.querySelector("[data-script-content]");
@@ -83,6 +88,54 @@ function continueToTutorial() {
     openTutorialModal();
   }, 450);
 }
+
+function getSearchText(card) {
+  return [
+    card.dataset.scriptTitle,
+    card.dataset.scriptType,
+    card.dataset.scriptStatus,
+    card.querySelector(".script-tag")?.textContent,
+    card.querySelector("h3")?.textContent,
+    card.querySelector("p")?.textContent,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function filterScripts() {
+  const query = scriptSearch.value.trim().toLowerCase();
+  let visibleCount = 0;
+
+  scriptCards.forEach((card) => {
+    const status = (card.dataset.scriptStatus || "").toLowerCase();
+    const matchesFilter = activeFilter === "all" || status === activeFilter;
+    const matchesSearch = !query || getSearchText(card).includes(query);
+    const isVisible = matchesFilter && matchesSearch;
+
+    card.classList.toggle("is-hidden", !isVisible);
+
+    if (isVisible) {
+      visibleCount += 1;
+    }
+  });
+
+  emptyState.hidden = visibleCount > 0;
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    filterButtons.forEach((item) => {
+      item.classList.toggle("active", item === button);
+    });
+
+    filterScripts();
+  });
+});
+
+scriptSearch.addEventListener("input", filterScripts);
 
 cardActions.forEach((button) => {
   button.addEventListener("click", () => {
