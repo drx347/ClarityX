@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClarityX - Script Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="noise"></div>
+
+    <section class="entry-gate" aria-label="Verification screen">
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="terminal-body">
+          <p class="terminal-line line-one">
+            <span class="prompt">cx:</span> Initializing ClarityX<span class="dots"></span>
+          </p>
+          <p class="terminal-line line-two">
+            <span class="prompt">sys:</span> Verifying access<span class="dots delay"></span>
+          </p>
+          <p class="terminal-line line-three granted">
+            <span class="prompt">ok:</span> Access Granted<span class="cursor"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <main class="app-shell">
+      <nav class="navbar">
+        <a href="#" class="brand" aria-label="ClarityX home">
+          <span class="brand-mark">CX</span>
+          <span>ClarityX</span>
+        </a>
+
+        <div class="nav-actions" aria-label="Main navigation">
+          <a href="#script-grid" class="nav-link active">Scripts</a>
+          <a href="#tutorial" class="nav-link">Tutorial</a>
+        </div>
+
+        <div class="nav-status">
+          <span class="status-dot"></span>
+          Online
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">ClarityX script hub</span>
+          <h1>Clean scripts, instant access.</h1>
+          <p>
+            Buka koleksi script, cek status Work atau Maintenance, lalu salin
+            script dari modal editor yang rapi.
+          </p>
+
+          <div class="hero-stats" aria-label="Library stats">
+            <div>
+              <strong>04</strong>
+              <span>Scripts</span>
+            </div>
+            <div>
+              <strong>03</strong>
+              <span>Work</span>
+            </div>
+            <div>
+              <strong>01</strong>
+              <span>Maintenance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-panel" aria-label="Code preview">
+          <div class="editor-top">
+            <div class="editor-tabs">
+              <span class="active-tab">loader.js</span>
+              <span>usage.md</span>
+            </div>
+            <span class="editor-pill">ready</span>
+          </div>
+
+          <pre class="code-block"><code><span class="ln">01</span><span class="code-key">const</span> clarity = <span class="code-fn">createLibrary</span>({
+<span class="ln">02</span>  mode: <span class="code-string">"secure"</span>,
+<span class="ln">03</span>  theme: <span class="code-string">"glass-dark"</span>,
+<span class="ln">04</span>  copyButton: <span class="code-bool">true</span>
+<span class="ln">05</span>});
+<span class="ln">06</span>
+<span class="ln">07</span><span class="code-fn">clarity</span>.<span class="code-fn">mount</span>(<span class="code-string">"#script-grid"</span>);</code></pre>
+        </div>
+      </section>
+
+      <section class="library-section" aria-label="Script library">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Library</span>
+            <h2>Script collection</h2>
+          </div>
+          <p>Ringkas, jelas, dan siap dibuka saat dibutuhkan.</p>
+        </div>
+
+        <div class="library-toolbar">
+          <div class="search-shell" aria-label="Search visual">
+            <span class="search-icon"></span>
+            <span>Search script...</span>
+          </div>
+          <div class="filter-pills">
+            <span class="filter-pill active">All</span>
+            <span class="filter-pill">Work</span>
+            <span class="filter-pill">Maintenance</span>
+          </div>
+        </div>
+
+        <div class="script-grid" id="script-grid">
+          <article
+            class="script-card"
+            data-script-title="Discord Auto Quest"
+            data-script-type="Auto Quest Script"
+            data-script-status="Work"
+          >
+            <template data-script-content>
+delete window.$;
+let wpRequire = webpackChunkdiscord_app.push([[Symbol()], {}, r => r]);
+webpackChunkdiscord_app.pop();
+
+let ApplicationStreamingStore = Object.values(wpRequire.c).find(x => x?.exports?.A?.__proto__?.getStreamerActiveStreamMetadata).exports.A;
+let RunningGameStore = Object.values(wpRequire.c).find(x => x?.exports?.Ay?.getRunningGames).exports.Ay;
+let QuestsStore = Object.values(wpRequire.c).find(x => x?.exports?.A?.__proto__?.getQuest).exports.A;
+let ChannelStore = Object.values(wpRequire.c).find(x => x?.exports?.A?.__proto__?.getAllThreadsForParent).exports.A;
+let GuildChannelStore = Object.values(wpRequire.c).find(x => x?.exports?.Ay?.getSFWDefaultChannel).exports.Ay;
+let FluxDispatcher = Object.values(wpRequire.c).find(x => x?.exports?.h?.__proto__?.flushWaitQueue).exports.h;
+let api = Object.values(wpRequire.c).find(x => x?.exports?.Bo?.get).exports.Bo;
+
+const supportedTasks = ["WATCH_VIDEO", "PLAY_ON_DESKTOP", "STREAM_ON_DESKTOP", "PLAY_ACTIVITY", "WATCH_VIDEO_ON_MOBILE"]
+let quests = [...QuestsStore.quests.values()].filter(x => x.userStatus?.enrolledAt && !x.userStatus?.completedAt && new Date(x.config.expiresAt).getTime() > Date.now() && supportedTasks.find(y => Object.keys((x.config.taskConfig ?? x.config.taskConfigV2).tasks).includes(y)))
+let isApp = typeof DiscordNative !== "undefined"
+if(quests.length === 0) {
+	console.log("You don't have any uncompleted quests!")
+} else {
+	let doJob = function() {
+		const quest = quests.pop()
+		if(!quest) return
+
+		const pid = Math.floor(Math.random() * 30000) + 1000
+		
+		const applicationId = quest.config.application.id
+		const applicationName = quest.config.application.name
+		const questName = quest.config.messages.questName
+		const taskConfig = quest.config.taskConfig ?? quest.config.taskConfigV2
+		const taskName = supportedTasks.find(x => taskConfig.tasks[x] != null)
+		const secondsNeeded = taskConfig.tasks[taskName].target
+		let secondsDone = quest.userStatus?.progress?.[taskName]?.value ?? 0
+
+		if(taskName === "WATCH_VIDEO" || taskName === "WATCH_VIDEO_ON_MOBILE") {
+			const maxFuture = 10, speed = 7, interval = 1
+			const enrolledAt = new Date(quest.userStatus.enrolledAt).getTime()
+			let completed = false
+			let fn = async () => {			
+				while(true) {
+					const maxAllowed = Math.floor((Date.now() - enrolledAt)/1000) + maxFuture
+					const diff = maxAllowed - secondsDone
+					const timestamp = secondsDone + speed
+					if(diff >= speed) {
+						const res = await api.post({url: `/quests/${quest.id}/video-progress`, body: {timestamp: Math.min(secondsNeeded, timestamp + Math.random())}})
+						completed = res.body.completed_at != null
+						secondsDone = Math.min(secondsNeeded, timestamp)
+					}
+					
+					if(timestamp >= secondsNeeded) {
+						break
+					}
+					await new Promise(resolve => setTimeout(resolve, interval * 1000))
+				}
+				if(!completed) {
+					await api.post({url: `/quests/${quest.id}/video-progress`, body: {timestamp: secondsNeeded}})
+				}
+				console.log("Quest completed!")
+				doJob()
+			}
+			fn()
+			console.log(`Spoofing video for ${questName}.`)
+		} else if(taskName === "PLAY_ON_DESKTOP") {
+			if(!isApp) {
+				console.log("This no longer works in browser for non-video quests. Use the discord desktop app to complete the", questName, "quest!")
+			} else {
+				api.get({url: `/applications/public?application_ids=${applicationId}`}).then(res => {
+					const appData = res.body[0]
+					const exeName = appData.executables?.find(x => x.os === "win32")?.name?.replace(">","") ?? appData.name.replace(/[\/\\:*?"<>|]/g, "")
+					
+					const fakeGame = {
+						cmdLine: `C:\\Program Files\\${appData.name}\\${exeName}`,
+						exeName,
+						exePath: `c:/program files/${appData.name.toLowerCase()}/${exeName}`,
+						hidden: false,
+						isLauncher: false,
+						id: applicationId,
+						name: appData.name,
+						pid: pid,
+						pidPath: [pid],
+						processName: appData.name,
+						start: Date.now(),
+					}
+					const realGames = RunningGameStore.getRunningGames()
+					const fakeGames = [fakeGame]
+					const realGetRunningGames = RunningGameStore.getRunningGames
+					const realGetGameForPID = RunningGameStore.getGameForPID
+					RunningGameStore.getRunningGames = () => fakeGames
+					RunningGameStore.getGameForPID = (pid) => fakeGames.find(x => x.pid === pid)
+					FluxDispatcher.dispatch({type: "RUNNING_GAMES_CHANGE", removed: realGames, added: [fakeGame], games: fakeGames})
+					
+					let fn = data => {
+						let progress = quest.config.configVersion === 1 ? data.userStatus.streamProgressSeconds : Math.floor(data.userStatus.progress.PLAY_ON_DESKTOP.value)
+						console.log(`Quest progress: ${progress}/${secondsNeeded}`)
+						
+						if(progress >= secondsNeeded) {
+							console.log("Quest completed!")
+							
+							RunningGameStore.getRunningGames = realGetRunningGames
+							RunningGameStore.getGameForPID = realGetGameForPID
+							FluxDispatcher.dispatch({type: "RUNNING_GAMES_CHANGE", removed: [fakeGame], added: [], games: []})
+							FluxDispatcher.unsubscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
+							
+							doJob()
+						}
+					}
+					FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
+					
+					console.log(`Spoofed your game to ${applicationName}. Wait for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
+				})
+			}
+		} else if(taskName === "STREAM_ON_DESKTOP") {
+			if(!isApp) {
+				console.log("This no longer works in browser for non-video quests. Use the discord desktop app to complete the", questName, "quest!")
+			} else {
+				let realFunc = ApplicationStreamingStore.getStreamerActiveStreamMetadata
+				ApplicationStreamingStore.getStreamerActiveStreamMetadata = () => ({
+					id: applicationId,
+					pid,
+					sourceName: null
+				})
+				
+				let fn = data => {
+					let progress = quest.config.configVersion === 1 ? data.userStatus.streamProgressSeconds : Math.floor(data.userStatus.progress.STREAM_ON_DESKTOP.value)
+					console.log(`Quest progress: ${progress}/${secondsNeeded}`)
+					
+					if(progress >= secondsNeeded) {
+						console.log("Quest completed!")
+						
+						ApplicationStreamingStore.getStreamerActiveStreamMetadata = realFunc
+						FluxDispatcher.unsubscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
+						
+						doJob()
+					}
+				}
+				FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
+				
+				console.log(`Spoofed your stream to ${applicationName}. Stream any window in vc for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
+				console.log("Remember that you need at least 1 other person to be in the vc!")
+			}
+		} else if(taskName === "PLAY_ACTIVITY") {
+			const channelId = ChannelStore.getSortedPrivateChannels()[0]?.id ?? Object.values(GuildChannelStore.getAllGuilds()).find(x => x != null && x.VOCAL.length > 0).VOCAL[0].channel.id
+			const streamKey = `call:${channelId}:1`
+			
+			let fn = async () => {
+				console.log("Completing quest", questName, "-", quest.config.messages.questName)
+				
+				while(true) {
+					const res = await api.post({url: `/quests/${quest.id}/heartbeat`, body: {stream_key: streamKey, terminal: false}})
+					const progress = res.body.progress.PLAY_ACTIVITY.value
+					console.log(`Quest progress: ${progress}/${secondsNeeded}`)
+					
+					await new Promise(resolve => setTimeout(resolve, 20 * 1000))
+					
+					if(progress >= secondsNeeded) {
+						await api.post({url: `/quests/${quest.id}/heartbeat`, body: {stream_key: streamKey, terminal: true}})
+						break
+					}
+				}
+				
+				console.log("Quest completed!")
+				doJob()
+			}
+			fn()
+		}
+	}
+	doJob()
+}
+
+if (access.granted) {
+  ClarityX.openLibrary();
+}
+            </template>
+            <template data-tutorial-content>
+1. Buka Discord Desktop App, bukan browser.
+2. Masuk ke halaman quest yang ingin diselesaikan.
+3. Tekan Ctrl + Shift + I untuk membuka DevTools.
+4. Paste script yang sudah dicopy ke tab Console.
+5. Tunggu progress quest sampai selesai.
+            </template>
+            <div class="card-meta">
+              <span class="script-tag">Discord Quest</span>
+              <div class="meta-group">
+                <span class="status-badge work">Work</span>
+                <span>v1.1</span>
+              </div>
+            </div>
+            <h3>Spoofing Discord Quest</h3>
+            <p>Auto Discord quest no need to download the application required by discord safe and clean BYPASS</p>
+            <button class="gradient-button" type="button" data-open-script>Open Script</button>
+          </article>
+
+          <article
+            class="script-card"
+            data-script-title="AutoFarm Logic CDID"
+            data-script-type="AutoFarm CDID "
+            data-script-status="Work"
+          >
+            <template data-script-content>
+-- ======= AUTOFARM LOGIC MODULE =======
+-- File terpisah yang bisa di-load dari GitHub
+
+local AutoFarmLogic = {}
+
+-- Services
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+-- Variables
+AutoFarmLogic.IsRunning = false
+AutoFarmLogic.CurrentSpeed = 710
+AutoFarmLogic.Player = Players.LocalPlayer
+
+
+-- Points
+local PointA = CFrame.new(-18158.0664, 34.5178947, -454.243683, 0.89404887, -0.000757645816, 0.447968811, 6.20140418e-06, 0.999998569, 0.00167891255, -0.447969437, -0.0014982518, 0.894047618)
+local PointB = CFrame.new(-34492.1211, 34.3485794, -32842.832, -0.934907079, 0.00187035452, -0.354887635, 0.000956334639, 0.999995768, 0.0027509057, 0.35489127, 0.00223244983, -0.934904933)
+
+-- Internal variables
+local heartbeatConn = nil
+local wasInFront = nil
+local justTeleported = false
+local currentTarget = PointB
+local printTimer = 0
+
+-- Private function: Teleport vehicle
+local function teleportVehicle(targetCFrame, vehicle)
+    pcall(function()
+        local chassis = vehicle.PrimaryPart
+        if not chassis then return end
+        
+        chassis.Anchored = true
+        
+        pcall(function() vehicle:PivotTo(targetCFrame) end)
+        pcall(function() vehicle:SetPrimaryPartCFrame(targetCFrame) end)
+        chassis.CFrame = targetCFrame
+        
+        chassis.Velocity = Vector3.zero
+        chassis.RotVelocity = Vector3.zero
+        if chassis.AssemblyLinearVelocity then
+            chassis.AssemblyLinearVelocity = Vector3.zero
+            chassis.AssemblyAngularVelocity = Vector3.zero
+        end
+        
+        wait(0.15)
+        chassis.Anchored = false
+    end)
+end
+
+-- Set speed
+function AutoFarmLogic:SetSpeed(speed)
+    self.CurrentSpeed = math.clamp(speed, 100, 710)
+end
+
+-- Start autofarm
+function AutoFarmLogic:Start(teleportPosition)
+    if self.IsRunning then
+        warn("⚠️ AutoFarm already running!")
+        return
+    end
+    
+    -- ========== TELEPORT TO POINT A FIRST ==========
+    local char = self.Player.Character
+    if char then
+        local hum = char:FindFirstChild("Humanoid")
+        if hum and hum.SeatPart and hum.SeatPart:IsA("VehicleSeat") then
+            local vehicleSeat = hum.SeatPart
+            local vehicleModel = vehicleSeat.Parent
+            
+            if vehicleModel and vehicleModel.PrimaryPart then
+                local pp = vehicleModel.PrimaryPart
+                
+                -- Simpan velocity
+                local oldVel = pp.AssemblyLinearVelocity or Vector3.zero
+                local oldAng = pp.AssemblyAngularVelocity or Vector3.zero
+                
+                -- Teleport ke Point A
+                pcall(function() vehicleModel:PivotTo(PointA) end)
+                
+                -- Restore velocity
+                pp.AssemblyLinearVelocity = oldVel
+                pp.AssemblyAngularVelocity = oldAng
+                
+                -- Wait sebentar biar settle
+                task.wait(0.3)
+            else
+                warn("⚠️ Vehicle PrimaryPart not found! Skipping teleport.")
+            end
+        else
+            warn("⚠️ Not in vehicle! Skipping teleport.")
+        end
+    end
+    
+    -- ========== START AUTOFARM LOOP ==========
+    self.IsRunning = true
+    currentTarget = PointB
+    wasInFront = nil
+    justTeleported = false
+    printTimer = 0
+    
+    -- Main loop
+    heartbeatConn = RunService.Heartbeat:Connect(function(dt)
+        if not self.IsRunning then
+            return
+        end
+        
+        pcall(function()
+            printTimer = printTimer + dt
+            
+            local char = self.Player.Character
+            if not char then return end
+            
+            local hum = char:FindFirstChild("Humanoid")
+            if not hum then return end
+            
+            local seat = hum.SeatPart
+            if not seat or not seat:IsA("VehicleSeat") then
+                return
+            end
+            
+            local vehicle = seat.Parent
+            local chassis = vehicle.PrimaryPart
+            if not chassis then return end
+            
+            local pos = chassis.Position
+            local targetPos = currentTarget.Position
+            local toTarget = targetPos - pos
+            local distance = toTarget.Magnitude
+            
+            -- Force move car
+            local flatDir = Vector3.new(toTarget.X, 0, toTarget.Z)
+            if flatDir.Magnitude > 1 then
+                flatDir = flatDir.Unit
+                
+                -- Set velocity
+                if chassis.AssemblyLinearVelocity then
+                    chassis.AssemblyLinearVelocity = flatDir * self.CurrentSpeed
+                else
+                    chassis.Velocity = flatDir * self.CurrentSpeed
+                end
+                
+                -- Set rotation
+                local targetCFrame = CFrame.lookAt(pos, pos + flatDir)
+                chassis.CFrame = chassis.CFrame:Lerp(targetCFrame, 0.15)
+            end
+            
+            -- Crossing detection
+            local carForward = chassis.CFrame.LookVector
+            local toTargetDir = toTarget.Unit
+            local dot = carForward:Dot(toTargetDir)
+            
+            local isInFront = dot > 0
+            
+            -- Detect crossing
+            if wasInFront == true and isInFront == false and not justTeleported then
+                
+                justTeleported = true
+                
+                local teleportTarget = (currentTarget == PointB) and PointB or PointA
+                local nextTarget = (currentTarget == PointB) and PointA or PointB
+                
+                teleportVehicle(teleportTarget, vehicle)
+                
+                currentTarget = nextTarget
+                wasInFront = nil
+                
+                task.delay(3, function()
+                    justTeleported = false
+                end)
+            end
+            
+            -- Update state
+            if wasInFront == nil and not justTeleported then
+                wasInFront = isInFront
+            elseif not justTeleported then
+                wasInFront = isInFront
+            end
+            
+            -- Print stats every 5 seconds
+            if printTimer >= 5 then
+                printTimer = 0
+                local targetName = (currentTarget == PointB) and "Point B" or "Point A"
+            end
+        end)
+    end)
+end
+
+-- Stop autofarm
+function AutoFarmLogic:StopAutoDrive()
+    if not self.IsRunning then
+        warn("⚠️ AutoFarm not running!")
+        return
+    end
+    
+    self.IsRunning = false
+    
+    if heartbeatConn then
+        heartbeatConn:Disconnect()
+        heartbeatConn = nil
+    end
+    
+    wasInFront = nil
+    justTeleported = false
+end
+
+-- Cleanup on character removing
+AutoFarmLogic.Player.CharacterRemoving:Connect(function()
+    if AutoFarmLogic.IsRunning then
+        AutoFarmLogic:StopAutoDrive()
+    end
+end)
+return AutoFarmLogic
+            </template>
+            <template data-tutorial-content>
+1. Buka executor atau environment Roblox yang kamu gunakan.
+2. Pastikan karakter sudah berada di vehicle.
+3. Paste script module ini sesuai loader yang kamu pakai.
+4. Jalankan fungsi Start untuk mulai autofarm.
+5. Gunakan StopAutoDrive jika ingin menghentikan proses.
+            </template>
+            <div class="card-meta">
+              <span class="script-tag teal">PRESET</span>
+              <div class="meta-group">
+                <span class="status-badge work">Work</span>
+                <span>LUA</span>
+              </div>
+            </div>
+            <h3>CDID Autofarm Logic</h3>
+            <p>CDID Autofarm preset for bypass system in Roblox Studio</p>
+            <button class="gradient-button" type="button" data-open-script>Open Script</button>
+          </article>
+
+          <article
+            class="script-card"
+            data-script-title="Copy Clipboard Flow"
+            data-script-type="Utility script"
+            data-script-status="Maintenance"
+          >
+            <template data-script-content>
+async function copyScript(value) {
+  await navigator.clipboard.writeText(value);
+
+  return {
+    status: "copied",
+    message: "Script copied to clipboard"
+  };
+}
+            </template>
+            <template data-tutorial-content>
+1. Copy script dari modal.
+2. Tempel fungsi ke file JavaScript project kamu.
+3. Panggil fungsi copyScript dengan value yang ingin disalin.
+4. Tambahkan feedback UI seperti toast jika diperlukan.
+            </template>
+            <div class="card-meta">
+              <span class="script-tag gold">Utility</span>
+              <div class="meta-group">
+                <span class="status-badge maintenance">Maintenance</span>
+                <span>Lite</span>
+              </div>
+            </div>
+            <h3>Copy Clipboard Flow</h3>
+            <p>Pattern UI untuk tombol copy, toast feedback, dan fallback interaksi sederhana.</p>
+            <button class="gradient-button" type="button" data-open-script>Open Script</button>
+          </article>
+
+          <article
+            class="script-card"
+            data-script-title="Tutorial Launcher"
+            data-script-type="Tutorial"
+            data-script-status="Work"
+          >
+            <template data-script-content>
+1. Pilih script dari library.
+2. Klik tombol Open Script.
+3. Baca instruksi singkat di modal.
+4. Salin script dan tempel ke project kamu.
+            </template>
+            <template data-tutorial-content>
+1. Baca isi tutorial di modal.
+2. Ikuti langkah penggunaan sesuai script.
+3. Ganti tutorial ini dengan instruksi kamu sendiri.
+4. Simpan file lalu refresh browser.
+            </template>
+            <div class="card-meta">
+              <span class="script-tag green">Guide</span>
+              <div class="meta-group">
+                <span class="status-badge work">Work</span>
+                <span>Docs</span>
+              </div>
+            </div>
+            <h3>Tutorial Launcher</h3>
+            <p>Layout tutorial penggunaan script dengan step pendek, code block, dan callout bersih.</p>
+            <button class="gradient-button" type="button" data-open-script>Open Tutorial</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="script-modal" id="script-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section
+        class="modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <div class="modal-header">
+          <div>
+            <div class="modal-meta-line">
+              <span class="modal-kicker" id="modal-type">Script</span>
+              <span class="status-badge work" id="modal-status">Work</span>
+            </div>
+            <h2 id="modal-title">Script Title</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-modal aria-label="Close modal">
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-flow" aria-label="Script flow">
+          <div class="flow-step is-active">
+            <span>1</span>
+            <strong>Review</strong>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <span>2</span>
+            <strong>Copy</strong>
+          </div>
+          <div class="flow-line"></div>
+          <div class="flow-step">
+            <span>3</span>
+            <strong>Tutorial</strong>
+          </div>
+        </div>
+
+        <div class="modal-code-shell">
+          <div class="modal-code-top">
+            <div class="file-chip">
+              <span class="file-dot"></span>
+              <span>script.js</span>
+            </div>
+            <button class="copy-button" type="button" data-copy-script>
+              <span class="copy-label">Copy Script</span>
+            </button>
+          </div>
+          <pre class="modal-code"><code id="modal-code"></code></pre>
+        </div>
+
+        <div class="modal-footer">
+          <span>After copying, the usage tutorial opens automatically.</span>
+          <button class="ghost-button" type="button" data-close-modal>Close</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="tutorial-modal" id="tutorial-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-tutorial></div>
+      <section
+        class="modal-panel tutorial-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tutorial-title"
+      >
+        <div class="modal-header">
+          <div>
+            <div class="modal-meta-line">
+              <span class="modal-kicker">Tutorial</span>
+              <span class="status-badge work">Guide</span>
+            </div>
+            <h2 id="tutorial-title">How to use this script</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-tutorial aria-label="Close tutorial">
+            &times;
+          </button>
+        </div>
+
+        <div class="tutorial-body">
+          <pre class="tutorial-text" id="tutorial-content"></pre>
+        </div>
+
+        <div class="modal-footer">
+          <span>Edit this guide from each card's tutorial template.</span>
+          <button class="ghost-button" type="button" data-close-tutorial>Done</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
