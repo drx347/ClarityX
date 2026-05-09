@@ -1,0 +1,494 @@
+@media (max-width: 820px) {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 50% -8rem, rgba(157, 92, 246, 0.22), transparent 22rem),
+      radial-gradient(circle at 100% 18rem, rgba(103, 215, 245, 0.1), transparent 18rem),
+      linear-gradient(180deg, #080910 0%, #10111a 48%, #080910 100%);
+  }
+
+  .ambient {
+    width: 17rem;
+    height: 17rem;
+    filter: blur(64px);
+    opacity: 0.22;
+  }
+
+  .noise {
+    opacity: 0.22;
+    background-size: 34px 34px;
+  }
+
+  .app-shell {
+    width: min(100% - 1rem, 46rem);
+    padding: 0.55rem 0 2.8rem;
+  }
+
+  .navbar {
+    top: 0.5rem;
+    min-height: 3.5rem;
+    padding: 0.45rem;
+    border-radius: 1.15rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045)),
+      rgba(10, 11, 19, 0.82);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.34);
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 0.6rem;
+    padding-left: 0;
+    font-size: 0.95rem;
+  }
+
+  .brand-mark {
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.85rem;
+  }
+
+  .nav-status {
+    min-width: 2.35rem;
+    height: 2.35rem;
+    padding: 0;
+    justify-content: center;
+    overflow: hidden;
+    color: transparent;
+    background: rgba(54, 242, 165, 0.08);
+  }
+
+  .status-dot {
+    width: 0.62rem;
+    height: 0.62rem;
+  }
+
+  .hero,
+  .connect-section {
+    gap: 1.05rem;
+    padding: 2.15rem 0 1.5rem;
+  }
+
+  .connect-section {
+    min-height: auto;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.65rem;
+    font-size: 0.69rem;
+  }
+
+  .hero h1,
+  .connect-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.1rem, 11vw, 3.1rem);
+    line-height: 0.98;
+  }
+
+  .hero p,
+  .connect-copy p {
+    max-width: 100%;
+    margin-top: 0.8rem;
+    font-size: 0.94rem;
+    line-height: 1.62;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.48rem;
+    margin-top: 1rem;
+  }
+
+  .hero-stats div {
+    padding: 0.72rem 0.68rem;
+    border-radius: 0.78rem;
+  }
+
+  .hero-stats strong {
+    font-size: 1.08rem;
+  }
+
+  .hero-stats span {
+    margin-top: 0.28rem;
+    font-size: 0.68rem;
+  }
+
+  .editor-panel,
+  .connect-card,
+  .script-card,
+  .library-toolbar,
+  .empty-state,
+  .tutorial-body {
+    border-radius: 0.95rem;
+  }
+
+  .editor-top {
+    padding: 0.7rem;
+  }
+
+  .editor-tabs {
+    gap: 0.35rem;
+  }
+
+  .editor-tabs span,
+  .editor-pill {
+    padding: 0.42rem 0.58rem;
+    font-size: 0.7rem;
+  }
+
+  .code-block {
+    max-height: 13rem;
+    padding: 0.85rem;
+    font-size: 0.74rem;
+    line-height: 1.72;
+  }
+
+  .ln {
+    width: 1.35rem;
+    margin-right: 0.55rem;
+  }
+
+  .library-section {
+    padding-top: 0.25rem;
+  }
+
+  .section-heading {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
+
+  .section-heading p {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .library-toolbar {
+    gap: 0.55rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .search-shell {
+    min-height: 2.65rem;
+    padding: 0 0.78rem;
+    border-radius: 0.78rem;
+    font-size: 0.86rem;
+  }
+
+  .filter-pills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .filter-pill {
+    min-height: 2.35rem;
+    padding: 0 0.42rem;
+    font-size: 0.72rem;
+  }
+
+  .script-grid,
+  .connect-grid {
+    gap: 0.72rem;
+  }
+
+  .script-card {
+    min-height: 0;
+    padding: 0.95rem;
+  }
+
+  .card-meta {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .script-tag {
+    min-height: 1.65rem;
+    padding: 0 0.58rem;
+  }
+
+  .status-badge {
+    min-height: 1.6rem;
+    padding: 0 0.55rem;
+    font-size: 0.66rem;
+  }
+
+  .script-card h3 {
+    margin-bottom: 0.45rem;
+    font-size: 1.03rem;
+  }
+
+  .script-card p,
+  .connect-card p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .card-actions {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .gradient-button,
+  .secondary-button,
+  .discord-button,
+  .ghost-connect-button {
+    min-height: 2.6rem;
+    padding: 0 0.9rem;
+    font-size: 0.84rem;
+  }
+
+  .connect-card {
+    padding: 1rem;
+  }
+
+  .connect-mark {
+    width: 2.55rem;
+    height: 2.55rem;
+    margin-bottom: 0.9rem;
+    border-radius: 0.85rem;
+  }
+
+  .connect-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.68rem;
+  }
+
+  .connect-card h2 {
+    font-size: 1.32rem;
+  }
+
+  .notice-bubble {
+    grid-template-columns: auto 1fr;
+    gap: 0.62rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    width: calc(100% - 1.3rem);
+    padding: 0.75rem;
+    border-radius: 0.9rem;
+  }
+
+  .notice-bubble strong {
+    font-size: 0.76rem;
+  }
+
+  .notice-bubble p {
+    font-size: 0.78rem;
+    line-height: 1.38;
+  }
+
+  .modal-panel {
+    width: 100%;
+    max-height: calc(100dvh - 1.2rem);
+    border-radius: 1.05rem 1.05rem 0.8rem 0.8rem;
+  }
+
+  .modal-header {
+    gap: 0.7rem;
+    padding: 0.95rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.28rem;
+  }
+
+  .icon-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.3rem;
+  }
+
+  .modal-flow {
+    display: flex;
+    gap: 0.4rem;
+    margin: 0.75rem 0.95rem 0;
+    padding: 0.45rem;
+    border-radius: 0.82rem;
+  }
+
+  .flow-step {
+    flex: 1;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.68rem;
+  }
+
+  .flow-step span {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .modal-code-shell {
+    margin: 0.75rem 0.95rem 0;
+    border-radius: 0.85rem;
+  }
+
+  .modal-code-top {
+    gap: 0.6rem;
+    padding: 0.62rem;
+    font-size: 0.72rem;
+  }
+
+  .copy-button {
+    min-width: 6.6rem;
+    min-height: 2.15rem;
+    padding: 0 0.78rem;
+    font-size: 0.72rem;
+  }
+
+  .modal-code {
+    max-height: min(20rem, 48dvh);
+    padding: 0.82rem;
+    font-size: 0.72rem;
+    line-height: 1.62;
+  }
+
+  .modal-footer {
+    gap: 0.7rem;
+    padding: 0.78rem 0.95rem 0.95rem;
+    font-size: 0.74rem;
+  }
+
+  .tutorial-body {
+    margin: 0.8rem 0.95rem;
+    padding: 0.85rem;
+  }
+
+  .tutorial-text {
+    font-size: 0.86rem;
+    line-height: 1.68;
+  }
+}
+
+@media (max-width: 520px) {
+  .entry-gate {
+    padding: 0.65rem;
+  }
+
+  .terminal-card {
+    border-radius: 1rem;
+  }
+
+  .terminal-bar {
+    padding: 0.72rem 0.85rem;
+  }
+
+  .terminal-body {
+    min-height: 10.5rem;
+    padding: 1rem;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.82rem;
+    font-size: 0.72rem;
+  }
+
+  .loader-meta {
+    font-size: 0.68rem;
+  }
+
+  .hero {
+    padding-top: 1.75rem;
+  }
+
+  .connect-section {
+    padding-top: 1.75rem;
+  }
+
+  .hero h1,
+  .connect-copy h1 {
+    font-size: clamp(2rem, 12vw, 2.65rem);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats div {
+    min-height: 3.05rem;
+  }
+
+  .script-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .script-card {
+    padding: 0.9rem;
+  }
+
+  .card-meta {
+    align-items: flex-start;
+  }
+
+  .meta-group {
+    gap: 0.35rem;
+  }
+
+  .library-toolbar {
+    position: sticky;
+    top: 4.35rem;
+    z-index: 4;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.045)),
+      rgba(10, 11, 19, 0.86);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.26);
+  }
+
+  .editor-top {
+    align-items: stretch;
+    flex-direction: row;
+  }
+
+  .editor-tabs span:nth-child(2) {
+    display: none;
+  }
+
+  .editor-tabs span {
+    flex: 0 0 auto;
+  }
+
+  .code-block {
+    max-height: 11.5rem;
+  }
+
+  .modal-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .modal-footer span {
+    line-height: 1.45;
+  }
+
+  .ghost-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand span:last-child {
+    max-width: 7.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .filter-pill {
+    font-size: 0.66rem;
+  }
+
+  .modal-code-top {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .copy-button {
+    width: 100%;
+  }
+}
