@@ -5,7 +5,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/public/index.html"
+      "destination": "/public/loading.html"
+    },
+    {
+      "source": "/loading",
+      "destination": "/public/loading.html"
     },
     {
       "source": "/connect",

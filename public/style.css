@@ -650,6 +650,26 @@ a {
   animation: none;
 }
 
+.library-page .app-shell {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.library-page .navbar,
+.library-page .hero-copy,
+.library-page .editor-panel,
+.library-page .section-heading,
+.library-page .library-toolbar,
+.library-page .script-card,
+.library-page .hero-stats div {
+  animation-delay: 0s !important;
+}
+
+.library-page .notice-bubble {
+  animation-delay: 0.45s;
+}
+
 .connect-section {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(22rem, 1fr);

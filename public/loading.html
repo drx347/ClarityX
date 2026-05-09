@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClarityX - Loading</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css" />
+  </head>
+  <body class="loading-page">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="noise"></div>
+
+    <section class="entry-gate" aria-label="Verification screen">
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="terminal-body">
+          <p class="terminal-line line-one">
+            <span class="prompt">CX:</span> Initializing ClarityX<span class="dots"></span>
+          </p>
+          <p class="terminal-line line-two">
+            <span class="prompt">SYS:</span> Verifying access<span class="dots delay"></span>
+          </p>
+          <div class="terminal-loader" aria-label="Loading progress">
+            <div class="loader-meta">
+              <span>Loading modules</span>
+              <span class="loader-percent"></span>
+            </div>
+            <div class="loader-track">
+              <span class="loader-fill"></span>
+            </div>
+          </div>
+          <p class="terminal-line line-three granted">
+            <span class="prompt">CX:</span> Access Granted<span class="cursor"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      window.setTimeout(() => {
+        window.location.replace("index.html");
+      }, 6600);
+    </script>
+  </body>
+</html>
