@@ -340,6 +340,12 @@
     font-size: 0.68rem;
   }
 
+  .flow-line {
+    display: block;
+    flex: 0 1 0.7rem;
+    min-width: 0.45rem;
+  }
+
   .flow-step span {
     width: 1.45rem;
     height: 1.45rem;
@@ -496,6 +502,28 @@
   .modal-footer {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .modal-flow {
+    gap: 0.28rem;
+    padding: 0.42rem;
+  }
+
+  .flow-step {
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.6rem;
+  }
+
+  .flow-step span {
+    width: 1.32rem;
+    height: 1.32rem;
+  }
+
+  .flow-line {
+    align-self: center;
+    flex-basis: 0.42rem;
+    min-width: 0.32rem;
   }
 
   .modal-footer span {

@@ -17,9 +17,19 @@ const closeTutorialButtons = document.querySelectorAll("[data-close-tutorial]");
 
 let activeScript = "";
 let activeTutorial = "";
-let tutorialTimer = null;
+let tutorialTimers = [];
 let activeFilter = "all";
 const filterMotionMs = 190;
+
+function clearTutorialTimers() {
+  tutorialTimers.forEach((timer) => window.clearTimeout(timer));
+  tutorialTimers = [];
+}
+
+function queueTutorialStep(callback, delay) {
+  const timer = window.setTimeout(callback, delay);
+  tutorialTimers.push(timer);
+}
 
 function getCardData(card) {
   const scriptTemplate = card.querySelector("[data-script-content]");
@@ -49,8 +59,8 @@ function openScriptModal(card) {
   tutorialContent.textContent = activeTutorial || "Tulis catatan penggunaan script ini di template data-tutorial-content.";
   copyButton.classList.remove("is-copied");
   copyButton.querySelector(".copy-label").textContent = "Copy Script";
-  modal.classList.remove("is-copied");
-  clearTimeout(tutorialTimer);
+  modal.classList.remove("is-copying", "is-tutorial", "is-done");
+  clearTutorialTimers();
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
@@ -58,7 +68,7 @@ function openScriptModal(card) {
 }
 
 function closeScriptModal() {
-  clearTimeout(tutorialTimer);
+  clearTutorialTimers();
   modal.classList.remove("is-open");
   modal.setAttribute("aria-hidden", "true");
   if (!tutorialModal.classList.contains("is-open")) {
@@ -79,15 +89,24 @@ function closeTutorialModal() {
 }
 
 function continueToTutorial() {
-  modal.classList.add("is-copied");
+  modal.classList.add("is-copying");
   copyButton.classList.add("is-copied");
   copyButton.querySelector(".copy-label").textContent = "Copied";
 
-  clearTimeout(tutorialTimer);
-  tutorialTimer = setTimeout(() => {
+  clearTutorialTimers();
+  queueTutorialStep(() => {
+    modal.classList.add("is-tutorial");
+  }, 260);
+
+  queueTutorialStep(() => {
+    modal.classList.add("is-done");
+    copyButton.querySelector(".copy-label").textContent = "Done";
+  }, 580);
+
+  queueTutorialStep(() => {
     closeScriptModal();
     openTutorialModal();
-  }, 450);
+  }, 940);
 }
 
 function getSearchText(card) {
