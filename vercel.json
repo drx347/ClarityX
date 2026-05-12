@@ -4,20 +4,8 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/public/loading.html"
-    },
-    {
-      "source": "/loading",
-      "destination": "/public/loading.html"
-    },
-    {
-      "source": "/connect",
-      "destination": "/public/connect.html"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/public/$1"
+      "destination": "/index.html"
     }
   ]
 }
