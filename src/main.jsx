@@ -922,7 +922,6 @@ function LoadingPage() {
             </div>
             <p className="terminal-line line-three granted">
               <span className="prompt">System:</span> <span className="access-text">Access Granted</span>
-              <span className="access-spark" aria-hidden="true" />
               <span className="cursor" />
             </p>
           </div>

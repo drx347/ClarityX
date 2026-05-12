@@ -233,27 +233,29 @@ a {
 }
 
 .access-text {
-  color: #ffffff;
+  display: inline-block;
+  position: relative;
+  margin-left: 0.12rem;
+  padding-right: 0.08rem;
   font-weight: 800;
   background: linear-gradient(90deg, #baf7dc, var(--green), var(--cyan));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.42));
+  letter-spacing: 0.01em;
 }
 
-.access-spark {
-  display: inline-block;
-  width: 0.42rem;
-  height: 0.42rem;
-  margin-left: 0.48rem;
-  border-radius: 50%;
-  vertical-align: 0.08em;
-  background: var(--green);
-  box-shadow:
-    0 0 0 0.28rem rgba(52, 211, 153, 0.08),
-    0 0 22px rgba(52, 211, 153, 0.85);
-  animation: accessPulse 1.25s ease-in-out infinite;
+.access-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.1rem;
+  bottom: -0.12rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(186, 247, 220, 0), rgba(52, 211, 153, 0.85), rgba(34, 211, 238, 0));
+  opacity: 0.9;
+  animation: accessSweep 1.4s ease-in-out infinite;
 }
 
 .dots::after {
@@ -787,10 +789,10 @@ a {
   }
 }
 
-@keyframes accessPulse {
+@keyframes accessSweep {
   50% {
-    transform: scale(1.38);
-    opacity: 0.58;
+    opacity: 0.35;
+    transform: scaleX(0.82);
   }
 }
 
