@@ -19,23 +19,7 @@ let activeScript = "";
 let activeTutorial = "";
 let tutorialTimers = [];
 let activeFilter = "all";
-let lastScrollY = window.scrollY;
 const filterMotionMs = 190;
-
-// Logika Hide Header saat Scroll
-const navbar = document.querySelector(".navbar");
-if (navbar) {
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY < 0) return;
-
-    const isScrollingDown = currentScrollY > lastScrollY;
-    const shouldHide = currentScrollY > 60 && isScrollingDown;
-    
-    navbar.classList.toggle("is-hidden", shouldHide);
-    lastScrollY = currentScrollY;
-  }, { passive: true });
-}
 
 function clearTutorialTimers() {
   tutorialTimers.forEach((timer) => window.clearTimeout(timer));

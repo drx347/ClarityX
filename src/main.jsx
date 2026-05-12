@@ -407,29 +407,84 @@ function Chrome({ children }) {
   );
 }
 
+const codePreviewLines = [
+  [
+    { text: "const ", className: "code-key" },
+    { text: "clarity = " },
+    { text: "createLibrary", className: "code-fn" },
+    { text: "({" },
+  ],
+  [
+    { text: "  mode: " },
+    { text: '"secure"', className: "code-string" },
+    { text: "," },
+  ],
+  [
+    { text: "  theme: " },
+    { text: '"edgy-dark"', className: "code-string" },
+    { text: "," },
+  ],
+  [
+    { text: "  copyButton: " },
+    { text: "true", className: "code-bool" },
+  ],
+  [{ text: "});" }],
+  [{ text: "" }],
+  [
+    { text: "clarity", className: "code-fn" },
+    { text: "." },
+    { text: "mount", className: "code-fn" },
+    { text: "(" },
+    { text: '"#script-grid"', className: "code-string" },
+    { text: ");" },
+  ],
+];
+
+const codePreviewLength = codePreviewLines.reduce(
+  (total, line, index) => total + line.reduce((sum, token) => sum + token.text.length, 0) + (index < codePreviewLines.length - 1 ? 1 : 0),
+  0,
+);
+
+function TypedCodePreview({ typedChars }) {
+  let remaining = typedChars;
+
+  return codePreviewLines.map((line, lineIndex) => {
+    const lineLength = line.reduce((sum, token) => sum + token.text.length, 0);
+    const lineStartRemaining = remaining;
+    const visibleChars = Math.max(0, Math.min(remaining, lineLength));
+    let tokenCursor = visibleChars;
+    remaining -= lineLength + 1;
+
+    const hasReachedLine = lineStartRemaining >= 0;
+    const isActiveLine = hasReachedLine && visibleChars < lineLength && remaining < 0;
+    const isEmptyActiveLine = lineLength === 0 && lineStartRemaining === 0;
+    const showEndCursor = visibleChars === lineLength && remaining === 0;
+    const lineClassName = `typed-code-line ${hasReachedLine ? "is-visible" : ""} ${isActiveLine || isEmptyActiveLine || showEndCursor ? "is-current" : ""}`;
+
+    return (
+      <span className={lineClassName} key={`code-preview-${lineIndex}`}>
+        <span className="ln">{String(lineIndex + 1).padStart(2, "0")}</span>
+        {line.map((token, tokenIndex) => {
+          const tokenText = token.text.slice(0, Math.max(0, Math.min(tokenCursor, token.text.length)));
+          tokenCursor -= token.text.length;
+
+          return token.className ? (
+            <span className={token.className} key={`${lineIndex}-${tokenIndex}`}>
+              {tokenText}
+            </span>
+          ) : (
+            <React.Fragment key={`${lineIndex}-${tokenIndex}`}>{tokenText}</React.Fragment>
+          );
+        })}
+        {(isActiveLine || isEmptyActiveLine || showEndCursor) && <span className="typing-cursor" aria-hidden="true" />}
+      </span>
+    );
+  });
+}
+
 function Navbar({ active, setRoute }) {
-  const [isHidden, setIsHidden] = useState(false);
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < 0) return; // Mengabaikan efek pantulan (bounce) pada iOS/Safari
-
-      const isScrollingDown = currentScrollY > lastScrollY;
-
-      // Sembunyikan jika scroll ke bawah dan sudah melewati 60px (threshold)
-      setIsHidden(currentScrollY > 60 && isScrollingDown);
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav className={`navbar ${isHidden ? "is-hidden" : ""}`}>
+    <nav className="navbar">
       <a
         href="/scripts"
         className="brand"
@@ -543,6 +598,17 @@ function LibraryPage({ activeFilter, filteredScripts, onFilterChange, onOpenScri
 }
 
 function Hero() {
+  const [typedChars, setTypedChars] = useState(0);
+
+  useEffect(() => {
+    const delay = typedChars >= codePreviewLength ? 1450 : 38;
+    const timer = window.setTimeout(() => {
+      setTypedChars((current) => (current >= codePreviewLength ? 0 : current + 1));
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [typedChars]);
+
   return (
     <section className="hero">
       <div className="hero-copy">
@@ -575,24 +641,12 @@ function Hero() {
             <span className="active-tab">loader.js</span>
             <span>usage.md</span>
           </div>
-          <span className="editor-pill">ready</span>
+          <span className="editor-pill is-typing">typing</span>
         </div>
 
-        <pre className="code-block">
+        <pre className="code-block" aria-label="Animated code preview">
           <code>
-            <span className="ln">01</span>
-            <span className="code-key">const</span> clarity = <span className="code-fn">createLibrary</span>({"{"}
-            {"\n"}
-            <span className="ln">02</span> mode: <span className="code-string">"secure"</span>,{"\n"}
-            <span className="ln">03</span> theme: <span className="code-string">"edgy-dark"</span>,{"\n"}
-            <span className="ln">04</span> copyButton: <span className="code-bool">true</span>
-            {"\n"}
-            <span className="ln">05</span>
-            {"});\n"}
-            <span className="ln">06</span>
-            {"\n"}
-            <span className="ln">07</span>
-            <span className="code-fn">clarity</span>.<span className="code-fn">mount</span>(<span className="code-string">"#script-grid"</span>);
+            <TypedCodePreview typedChars={typedChars} />
           </code>
         </pre>
       </div>
