@@ -369,21 +369,18 @@ a {
   place-items: center;
   width: 2.7rem;
   height: 2.7rem;
-  border-radius: 0.35rem;
+  border-radius: 0;
   overflow: hidden;
-  background:
-    linear-gradient(#171322, #171322) padding-box,
-    linear-gradient(135deg, #fff0a6, var(--gold), #7b1f39, var(--sapphire)) border-box;
-  border: 1px solid transparent;
+  background: transparent;
+  border: 0;
   color: #fff;
-  box-shadow: 0 0 28px rgba(232, 189, 98, 0.2);
+  box-shadow: none;
   font-size: 0.82rem;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .brand:hover .brand-mark {
   transform: rotate(-4deg) scale(1.04);
-  box-shadow: 0 0 36px rgba(232, 189, 98, 0.26);
 }
 
 .brand-mark img {
@@ -895,19 +892,18 @@ a {
   width: 3rem;
   height: 3rem;
   margin-bottom: 1.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 0.45rem;
+  border: 0;
+  border-radius: 0;
   color: #fff;
-  background: linear-gradient(135deg, var(--gold), var(--wine));
-  box-shadow: 0 16px 36px rgba(232, 189, 98, 0.18);
+  background: transparent;
+  box-shadow: none;
   font-size: 0.85rem;
   font-weight: 900;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .connect-card:hover .connect-mark {
   transform: scale(1.04) rotate(-2deg);
-  box-shadow: 0 18px 42px rgba(232, 189, 98, 0.24);
 }
 
 .connect-mark img {
@@ -920,11 +916,11 @@ a {
 .image-mark {
   overflow: hidden;
   padding: 0;
-  background: rgba(255, 255, 255, 0.07);
+  background: transparent;
 }
 
 .subtle-mark {
-  background: rgba(255, 255, 255, 0.07);
+  background: transparent;
   box-shadow: none;
 }
 
@@ -2234,15 +2230,13 @@ body {
 }
 
 .brand-mark {
-  border-radius: 0.35rem;
-  background:
-    linear-gradient(#080b11, #080b11) padding-box,
-    linear-gradient(135deg, var(--green), var(--cyan), var(--pink)) border-box;
-  box-shadow: 0 0 28px rgba(34, 211, 238, 0.16);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .brand:hover .brand-mark {
-  box-shadow: 0 0 36px rgba(124, 255, 198, 0.18);
+  box-shadow: none;
 }
 
 .nav-actions,
