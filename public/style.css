@@ -216,19 +216,44 @@ a {
 }
 
 .line-one {
-  animation: typeIn 1.15s steps(28) 0.25s forwards;
+  animation: typeIn 1.15s steps(34) 0.25s forwards;
 }
 
 .line-two {
-  animation: typeIn 1.15s steps(26) 1.75s forwards;
+  animation: typeIn 1.15s steps(32) 1.75s forwards;
 }
 
 .line-three {
-  animation: typeIn 0.95s steps(18) 5.05s forwards;
+  animation: typeIn 0.95s steps(30) 5.05s forwards;
 }
 
 .granted {
   color: #baf7dc;
+  text-shadow: 0 0 18px rgba(52, 211, 153, 0.34);
+}
+
+.access-text {
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(90deg, #baf7dc, var(--green), var(--cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.42));
+}
+
+.access-spark {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-left: 0.48rem;
+  border-radius: 50%;
+  vertical-align: 0.08em;
+  background: var(--green);
+  box-shadow:
+    0 0 0 0.28rem rgba(52, 211, 153, 0.08),
+    0 0 22px rgba(52, 211, 153, 0.85);
+  animation: accessPulse 1.25s ease-in-out infinite;
 }
 
 .dots::after {
@@ -759,6 +784,13 @@ a {
 @keyframes typingCursorBlink {
   50% {
     opacity: 0.16;
+  }
+}
+
+@keyframes accessPulse {
+  50% {
+    transform: scale(1.38);
+    opacity: 0.58;
   }
 }
 

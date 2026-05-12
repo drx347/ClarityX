@@ -906,10 +906,10 @@ function LoadingPage() {
 
           <div className="terminal-body">
             <p className="terminal-line line-one">
-              <span className="prompt">CX:</span> Initializing ClarityX<span className="dots" />
+              <span className="prompt">User:</span> Initializing ClarityX<span className="dots" />
             </p>
             <p className="terminal-line line-two">
-              <span className="prompt">SYS:</span> Verifying access<span className="dots delay" />
+              <span className="prompt">System:</span> Verifying access<span className="dots delay" />
             </p>
             <div className="terminal-loader" aria-label="Loading progress">
               <div className="loader-meta">
@@ -921,7 +921,9 @@ function LoadingPage() {
               </div>
             </div>
             <p className="terminal-line line-three granted">
-              <span className="prompt">CX:</span> Access Granted<span className="cursor" />
+              <span className="prompt">System:</span> <span className="access-text">Access Granted</span>
+              <span className="access-spark" aria-hidden="true" />
+              <span className="cursor" />
             </p>
           </div>
         </div>
