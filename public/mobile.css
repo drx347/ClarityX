@@ -402,6 +402,11 @@
     border-radius: 1rem;
   }
 
+  .terminal-card::before {
+    padding: 0.72rem 0.85rem 0;
+    font-size: 0.62rem;
+  }
+
   .terminal-bar {
     padding: 0.72rem 0.85rem;
   }

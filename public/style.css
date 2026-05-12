@@ -1,3 +1,51 @@
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/Sora-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/Sora-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/Sora-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/fonts/Sora-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #07070d;
   --bg-soft: #121020;
@@ -32,7 +80,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--text);
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Sora", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     linear-gradient(90deg, rgba(232, 189, 98, 0.045) 1px, transparent 1px),
     linear-gradient(rgba(232, 189, 98, 0.035) 1px, transparent 1px),
@@ -168,10 +216,22 @@ a {
   backdrop-filter: blur(22px);
 }
 
+.terminal-card::before {
+  content: "ClarityX handshake";
+  display: block;
+  padding: 0.82rem 1.15rem 0;
+  color: rgba(199, 187, 165, 0.8);
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .terminal-bar {
   display: flex;
   gap: 0.5rem;
-  padding: 1rem 1.15rem;
+  padding: 0.72rem 1.15rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   background: rgba(255, 255, 255, 0.035);
 }
@@ -197,7 +257,7 @@ a {
 .terminal-body {
   min-height: 15rem;
   padding: clamp(1.4rem, 5vw, 2.2rem);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: "JetBrains Mono", Consolas, "Liberation Mono", monospace;
 }
 
 .terminal-line {
@@ -207,12 +267,14 @@ a {
   overflow: hidden;
   white-space: nowrap;
   color: #dfe4f5;
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
   opacity: 0;
 }
 
 .prompt {
   color: var(--cyan);
+  font-weight: 700;
 }
 
 .line-one {
@@ -230,12 +292,13 @@ a {
 .granted {
   color: #baf7dc;
   text-shadow: 0 0 18px rgba(52, 211, 153, 0.34);
+  letter-spacing: 0.02em;
 }
 
 .access-text {
   display: inline-block;
   position: relative;
-  margin-left: 0.12rem;
+  margin-left: 0.16rem;
   padding-right: 0.08rem;
   font-weight: 800;
   background: linear-gradient(90deg, #baf7dc, var(--green), var(--cyan));
@@ -243,7 +306,8 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.42));
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .access-text::after {
@@ -291,13 +355,15 @@ a {
   gap: 1rem;
   margin-bottom: 0.6rem;
   color: var(--muted);
+  font-family: "Sora", system-ui, sans-serif;
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .loader-percent::before {
   content: "1%";
   color: #e8eaf2;
+  font-family: "JetBrains Mono", Consolas, monospace;
   animation: percentCount 2.05s steps(99, end) 3s forwards;
 }
 
@@ -383,7 +449,7 @@ a {
   padding-left: 0.35rem;
   font-size: 1rem;
   font-weight: 800;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
   transition: transform 0.28s ease, opacity 0.28s ease;
 }
 
@@ -515,7 +581,7 @@ a {
   font-size: clamp(2.35rem, 6vw, 4.6rem);
   line-height: 1;
   font-weight: 800;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
   letter-spacing: 0;
 }
 
@@ -574,7 +640,7 @@ a {
 .hero-stats strong {
   display: block;
   color: var(--ivory);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
   font-size: 1.35rem;
   line-height: 1;
 }
@@ -652,7 +718,7 @@ a {
   box-shadow:
     0 0 0 0.45rem rgba(232, 189, 98, 0.045),
     0 18px 42px rgba(0, 0, 0, 0.28);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
   font-size: 1.45rem;
   font-weight: 800;
 }
@@ -849,7 +915,7 @@ a {
   font-size: clamp(2.4rem, 6vw, 4.6rem);
   line-height: 1;
   letter-spacing: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .connect-copy p {
@@ -971,7 +1037,7 @@ a {
   margin: 0;
   font-size: clamp(1.45rem, 4vw, 2rem);
   letter-spacing: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .connect-card p {
@@ -1029,7 +1095,7 @@ a {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   letter-spacing: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .library-toolbar {
@@ -1351,7 +1417,7 @@ a {
   font-size: 1.18rem;
   line-height: 1.25;
   letter-spacing: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .script-card p {
@@ -1529,7 +1595,7 @@ a {
   font-size: clamp(1.45rem, 4vw, 2.25rem);
   line-height: 1.1;
   letter-spacing: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .modal-flow {
@@ -1787,7 +1853,7 @@ a {
 .tutorial-text {
   margin: 0;
   color: #e8eaf2;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
   font-size: clamp(0.92rem, 2vw, 1rem);
   font-weight: 650;
   line-height: 1.85;
@@ -2260,7 +2326,7 @@ body {
 .script-card h3,
 .modal-header h2,
 .hero-stats strong {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Sora", system-ui, sans-serif;
 }
 
 .brand-mark {
