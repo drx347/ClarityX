@@ -410,32 +410,39 @@ function Chrome({ children }) {
 const codePreviewLines = [
   [
     { text: "const ", className: "code-key" },
-    { text: "clarity = " },
-    { text: "createLibrary", className: "code-fn" },
-    { text: "({" },
+    { text: "profile = " },
+    { text: "{" },
   ],
   [
-    { text: "  mode: " },
-    { text: '"secure"', className: "code-string" },
+    { text: "  name: " },
+    { text: '"exotickic"', className: "code-string" },
     { text: "," },
   ],
   [
-    { text: "  theme: " },
-    { text: '"edgy-dark"', className: "code-string" },
+    { text: "  discord: " },
+    { text: '"@exotickic"', className: "code-string" },
     { text: "," },
   ],
   [
-    { text: "  copyButton: " },
-    { text: "true", className: "code-bool" },
+    { text: "  status: " },
+    { text: '"online"', className: "code-string" },
   ],
-  [{ text: "});" }],
+  [{ text: "};" }],
   [{ text: "" }],
   [
-    { text: "clarity", className: "code-fn" },
-    { text: "." },
-    { text: "mount", className: "code-fn" },
+    { text: "print", className: "code-fn" },
     { text: "(" },
-    { text: '"#script-grid"', className: "code-string" },
+    { text: "profile", className: "code-fn" },
+    { text: "." },
+    { text: "name", className: "code-fn" },
+    { text: ");" },
+  ],
+  [
+    { text: "print", className: "code-fn" },
+    { text: "(" },
+    { text: "profile", className: "code-fn" },
+    { text: "." },
+    { text: "discord", className: "code-fn" },
     { text: ");" },
   ],
 ];
@@ -445,7 +452,9 @@ const codePreviewLength = codePreviewLines.reduce(
   0,
 );
 
-function TypedCodePreview({ typedChars }) {
+const codePreviewLastLineIndex = codePreviewLines.length - 1;
+
+function TypedCodePreview({ isResetting, typedChars }) {
   let remaining = typedChars;
 
   return codePreviewLines.map((line, lineIndex) => {
@@ -459,10 +468,10 @@ function TypedCodePreview({ typedChars }) {
     const isActiveLine = hasReachedLine && visibleChars < lineLength && remaining < 0;
     const isEmptyActiveLine = lineLength === 0 && lineStartRemaining === 0;
     const showEndCursor = visibleChars === lineLength && remaining === 0;
-    const lineClassName = `typed-code-line ${hasReachedLine ? "is-visible" : ""} ${isActiveLine || isEmptyActiveLine || showEndCursor ? "is-current" : ""}`;
+    const lineClassName = `typed-code-line ${hasReachedLine ? "is-visible" : ""} ${isResetting && hasReachedLine ? "is-clearing" : ""} ${isActiveLine || isEmptyActiveLine || showEndCursor ? "is-current" : ""}`;
 
     return (
-      <span className={lineClassName} key={`code-preview-${lineIndex}`}>
+      <span className={lineClassName} key={`code-preview-${lineIndex}`} style={{ "--line-index": lineIndex, "--reverse-line-index": codePreviewLastLineIndex - lineIndex }}>
         <span className="ln">{String(lineIndex + 1).padStart(2, "0")}</span>
         {line.map((token, tokenIndex) => {
           const tokenText = token.text.slice(0, Math.max(0, Math.min(tokenCursor, token.text.length)));
@@ -476,15 +485,33 @@ function TypedCodePreview({ typedChars }) {
             <React.Fragment key={`${lineIndex}-${tokenIndex}`}>{tokenText}</React.Fragment>
           );
         })}
-        {(isActiveLine || isEmptyActiveLine || showEndCursor) && <span className="typing-cursor" aria-hidden="true" />}
+        {!isResetting && (isActiveLine || isEmptyActiveLine || showEndCursor) && <span className="typing-cursor" aria-hidden="true" />}
       </span>
     );
   });
 }
 
 function Navbar({ active, setRoute }) {
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 0) return;
+
+      const isScrollingDown = currentScrollY > lastScrollY;
+      setIsHidden(currentScrollY > 60 && isScrollingDown);
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isHidden ? "is-hidden" : ""}`}>
       <a
         href="/scripts"
         className="brand"
@@ -599,15 +626,30 @@ function LibraryPage({ activeFilter, filteredScripts, onFilterChange, onOpenScri
 
 function Hero() {
   const [typedChars, setTypedChars] = useState(0);
+  const [isResetting, setIsResetting] = useState(false);
 
   useEffect(() => {
-    const delay = typedChars >= codePreviewLength ? 1450 : 38;
+    if (isResetting) {
+      const resetTimer = window.setTimeout(() => {
+        setTypedChars(0);
+        setIsResetting(false);
+      }, 760);
+
+      return () => window.clearTimeout(resetTimer);
+    }
+
+    const delay = typedChars >= codePreviewLength ? 1350 : 42;
     const timer = window.setTimeout(() => {
-      setTypedChars((current) => (current >= codePreviewLength ? 0 : current + 1));
+      if (typedChars >= codePreviewLength) {
+        setIsResetting(true);
+        return;
+      }
+
+      setTypedChars((current) => current + 1);
     }, delay);
 
     return () => window.clearTimeout(timer);
-  }, [typedChars]);
+  }, [isResetting, typedChars]);
 
   return (
     <section className="hero">
@@ -641,12 +683,11 @@ function Hero() {
             <span className="active-tab">loader.js</span>
             <span>usage.md</span>
           </div>
-          <span className="editor-pill is-typing">typing</span>
         </div>
 
-        <pre className="code-block" aria-label="Animated code preview">
+        <pre className={`code-block ${isResetting ? "is-resetting" : ""}`} aria-label="Animated code preview">
           <code>
-            <TypedCodePreview typedChars={typedChars} />
+            <TypedCodePreview isResetting={isResetting} typedChars={typedChars} />
           </code>
         </pre>
       </div>

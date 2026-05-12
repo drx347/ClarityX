@@ -343,6 +343,12 @@ a {
     0 0 36px rgba(232, 189, 98, 0.13);
 }
 
+.navbar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 1.35rem));
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -665,13 +671,6 @@ a {
   color: #ffe8a4;
 }
 
-.editor-pill.is-typing {
-  color: #9ff0c4;
-  background: rgba(58, 214, 143, 0.13);
-  box-shadow: 0 0 24px rgba(58, 214, 143, 0.14);
-  animation: typingStatusPulse 1.35s ease-in-out infinite;
-}
-
 .code-block {
   position: relative;
   z-index: 2;
@@ -701,10 +700,12 @@ a {
   display: block;
   min-height: 1.9em;
   opacity: 0;
-  transform: translateY(-0.24rem);
+  transform: translateY(0.34rem);
   transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.18, 0.9, 0.22, 1),
+    text-shadow 0.28s ease;
+  transition-delay: calc(var(--line-index) * 0.035s);
   white-space: pre;
 }
 
@@ -715,6 +716,11 @@ a {
 
 .typed-code-line.is-current {
   text-shadow: 0 0 18px rgba(143, 208, 239, 0.12);
+}
+
+.typed-code-line.is-clearing {
+  animation: typedLineClear 0.48s cubic-bezier(0.72, 0, 0.28, 1) forwards;
+  animation-delay: calc(var(--reverse-line-index) * 0.035s);
 }
 
 .typing-cursor {
@@ -759,10 +765,10 @@ a {
   }
 }
 
-@keyframes typingStatusPulse {
-  50% {
-    box-shadow: 0 0 30px rgba(58, 214, 143, 0.28);
-    transform: translateY(-1px);
+@keyframes typedLineClear {
+  to {
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(0.65rem);
   }
 }
 

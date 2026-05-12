@@ -19,7 +19,24 @@ let activeScript = "";
 let activeTutorial = "";
 let tutorialTimers = [];
 let activeFilter = "all";
+let lastScrollY = window.scrollY;
 const filterMotionMs = 190;
+
+const navbar = document.querySelector(".navbar");
+if (navbar) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 0) return;
+
+      const isScrollingDown = currentScrollY > lastScrollY;
+      navbar.classList.toggle("is-hidden", currentScrollY > 60 && isScrollingDown);
+      lastScrollY = currentScrollY;
+    },
+    { passive: true },
+  );
+}
 
 function clearTutorialTimers() {
   tutorialTimers.forEach((timer) => window.clearTimeout(timer));
